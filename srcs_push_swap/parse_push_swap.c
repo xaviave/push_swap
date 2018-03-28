@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/03/14 11:47:54 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/03/27 16:02:58 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/03/27 15:47:24 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,7 +54,7 @@ static int	check_double(int *tab, int max)
 	return (1);
 }
 
-int			parse_checker(int ac, char **av, t_nu **pile_a)
+int			parse_push_swap(int ac, char **av, t_nu **pile_a)
 {
 	int		i;
 	int		j;

@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/03/14 11:31:59 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/03/20 16:36:52 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/03/26 16:01:23 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -78,7 +78,7 @@ static void	apply_move(char **move, t_nu *pile_a)
 		{
 			if (!ft_strcmp(move[i], move_struct[j].str))
 			{
-				move_struct[j].f(&pile_a, &pile_b);
+				move_struct[j].f(&pile_a, &pile_b, 0);
 				break ;
 			}
 		}

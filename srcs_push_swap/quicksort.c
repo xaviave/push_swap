@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   quicksort.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/03/13 16:31:23 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/03/26 13:37:21 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/03/22 11:17:23 by xamartin     #+#   ##    ##    #+#       */
+/*   Updated: 2018/03/27 14:19:44 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int				main(int ac, char **av)
+void	ft_quicksort(t_nu **pile_a, t_nu **pile_b, int size)
 {
-	t_nu		*pile_a;
-
-	if (!parse_checker(ac - 1, av, &pile_a))
-		return (0);
-	apply_checker(pile_a);
+	if (pile_a || pile_b || size)
+		return ;
 }

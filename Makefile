@@ -6,7 +6,7 @@
 #    By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/02/01 10:30:09 by xamartin     #+#   ##    ##    #+#        #
-#    Updated: 2018/03/20 16:54:29 by xamartin    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/03/27 16:48:54 by xamartin    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -29,15 +29,16 @@ CFLAGS = -Wall -Werror -Wextra
 CHECKER_SCRS_PATH = ./srcs_checker/
 CHECKER_OBJS_PATH = ./srcs_checker/
 
-CHECKER_FILES = main_checker.c\
-				list_checker.c\
-				apply_checker.c\
+CHECKER_FILES = apply_checker.c\
 				parse_checker.c\
+				main_checker.c\
+				list_init.c\
 				init_move.c\
+				move_rr.c\
 				move_s.c\
 				move_p.c\
 				move_r.c\
-				move_rr.c\
+				color.c\
 
 CHECKER_SRCS = $(addprefix $(CHECKER_SRCS_PATH), $(CHECKER_FILES))
 CHECKER_OBJS = $(addprefix $(CHECKER_OBJS_PATH), $(CHECKER_FILES:.c=.o))
@@ -47,10 +48,18 @@ PUSH_SWAP_SRCS_PATH = ./srcs_push_swap/
 PUSH_SWAP_OBJS_PATH = ./srcs_push_swap/
 
 PUSH_SWAP_FILES = main_push_swap.c\
+				  parse_push_swap.c\
+				  apply_push_swap.c\
+				  simplesort.c\
+				  quicksort.c\
+				  mergesort.c\
+				  list_init.c\
+				  init_move.c\
+				  move_rr.c\
 				  move_s.c\
 				  move_p.c\
 				  move_r.c\
-				  move_rr.c\
+				  color.c\
 
 
 PUSH_SWAP_SRCS = $(addprefix $(PUSH_SWAP_SRCS_PATH), $(PUSH_SWAP_FILES))

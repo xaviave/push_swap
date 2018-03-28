@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   mergesort.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/03/13 16:31:23 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/03/26 13:37:21 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/03/22 13:53:24 by xamartin     #+#   ##    ##    #+#       */
+/*   Updated: 2018/03/26 13:46:06 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int				main(int ac, char **av)
+static int	find_middle(t_nu **pile_a, int size)
 {
-	t_nu		*pile_a;
+	int		i;
+	t_nu	*tmp;
 
-	if (!parse_checker(ac - 1, av, &pile_a))
-		return (0);
-	apply_checker(pile_a);
+	i = 0;
+	tmp = *pile_a;
+	while (size)
+		break ;
+	return (0);
+}
+
+void		ft_mergesort(t_nu **pile_a, t_nu **pile_b, int size)
+{
+	int		middle;
+
+	(void)pile_b;
+	middle = find_middle(pile_a, size);	
 }
