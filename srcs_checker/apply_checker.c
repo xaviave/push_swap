@@ -6,21 +6,27 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/03/14 11:31:59 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/03/26 16:01:23 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/12 11:50:02 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	free_tab(char **move)
+int			check_graph(char *str, t_mem *graph)
 {
-	int		i;
-
-	i = -1;
-	while (move[++i])
-		ft_strdel(&move[i]);
-	free(move);
+	if (!ft_strcmp(str, "-g"))
+	{
+		graph->aff = 1;
+		return (1);
+	}
+	else if (!ft_strcmp(str, "-sg"))
+	{
+		graph->aff = 2;
+		return (1);
+	}
+	graph->aff = 0;
+	return (0);
 }
 
 static int	check_move(char **move)
@@ -61,7 +67,7 @@ static int	check_well(t_nu **pile_a, t_nu **pile_b)
 	return (color("OK", 3));
 }
 
-static void	apply_move(char **move, t_nu *pile_a)
+static void	apply_move(char **move, t_nu *pile_a, t_mem *graph)
 {
 	int		i;
 	int		j;
@@ -78,7 +84,7 @@ static void	apply_move(char **move, t_nu *pile_a)
 		{
 			if (!ft_strcmp(move[i], move_struct[j].str))
 			{
-				move_struct[j].f(&pile_a, &pile_b, 0);
+				move_struct[j].f(&pile_a, &pile_b, 0, graph);
 				break ;
 			}
 		}
@@ -89,7 +95,7 @@ static void	apply_move(char **move, t_nu *pile_a)
 	free_list(pile_a);
 }
 
-void		apply_checker(t_nu *pile_a)
+void		apply_checker(t_nu *pile_a, t_mem *graph)
 {
 	char	*line;
 	char	*file;
@@ -105,7 +111,7 @@ void		apply_checker(t_nu *pile_a)
 	move = ft_strsplit(file, '/');
 	ft_strdel(&file);
 	if (check_move(move))
-		apply_move(move, pile_a);
+		apply_move(move, pile_a, graph);
 	else
 		color("Error", 0);
 	free_tab(move);

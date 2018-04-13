@@ -6,7 +6,7 @@
 #    By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/02/01 10:30:09 by xamartin     #+#   ##    ##    #+#        #
-#    Updated: 2018/03/27 16:48:54 by xamartin    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/04/12 11:42:47 by xamartin    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -18,10 +18,13 @@
 
 CC = gcc
 LIBFT = libft/
+GRAPH = minilibx_macos/libmlx.a
 CHECKER = checker
 PUSH_SWAP = push_swap
 INC = -I includes/push_swap.h
-CFLAGS = -Wall -Werror -Wextra
+INC_GRAPH = -I minilibx_macos
+CFLAGS = -Wall -Werror -Wextra -g
+EXT_LIBS = -framework OpenGl -framework Appkit
 
 
 #PATH
@@ -39,6 +42,8 @@ CHECKER_FILES = apply_checker.c\
 				move_p.c\
 				move_r.c\
 				color.c\
+				visu.c\
+
 
 CHECKER_SRCS = $(addprefix $(CHECKER_SRCS_PATH), $(CHECKER_FILES))
 CHECKER_OBJS = $(addprefix $(CHECKER_OBJS_PATH), $(CHECKER_FILES:.c=.o))
@@ -50,9 +55,9 @@ PUSH_SWAP_OBJS_PATH = ./srcs_push_swap/
 PUSH_SWAP_FILES = main_push_swap.c\
 				  parse_push_swap.c\
 				  apply_push_swap.c\
+				  genius_insert2.c\
+				  genius_insert.c\
 				  simplesort.c\
-				  quicksort.c\
-				  mergesort.c\
 				  list_init.c\
 				  init_move.c\
 				  move_rr.c\
@@ -60,6 +65,7 @@ PUSH_SWAP_FILES = main_push_swap.c\
 				  move_p.c\
 				  move_r.c\
 				  color.c\
+				  visu.c\
 
 
 PUSH_SWAP_SRCS = $(addprefix $(PUSH_SWAP_SRCS_PATH), $(PUSH_SWAP_FILES))
@@ -74,11 +80,12 @@ all: $(CHECKER) $(PUSH_SWAP)
 
 $(CHECKER): $(CHECKER_OBJS)
 	@make -C $(LIBFT)
-	@$(CC) -g $(CFLAGS) $(INC) -o $@ $(CHECKER_OBJS) -L $(LIBFT) -lft
+	@make -C minilibx_macos
+	@$(CC) $(CFLAGS) $(INC) $(GRAPH) $(INC_GRAPH) $(EXT_LIBS) -o $@ $(CHECKER_OBJS) -L $(LIBFT) -lft
 
 $(PUSH_SWAP): $(PUSH_SWAP_OBJS)
 	@make -C $(LIBFT)
-	@$(CC) -g $(CFLAGS) $(INC) -o $@ $(PUSH_SWAP_OBJS) -L $(LIBFT) -lft
+	@$(CC) $(CFLAGS) $(INC) -o $@ $(PUSH_SWAP_OBJS) -L $(LIBFT) -lft
 
 
 $(PUSH_SWAP_OBJS_PATH)%.o: $(PUSH_SWAP_SRCS_PATH)%.c
@@ -90,12 +97,15 @@ $(CHECKER_OBJS_PATH)%.o: $(CHECKER_SRCS_PATH)%.c
 
 clean:
 	@make -C libft clean
+	@make -C minilibx_macos clean
 	@rm -rf $(PUSH_SWAP_OBJS)
 	@rm -f $(CHECKER_OBJS)
 
 fclean: clean
 	@make -C libft fclean
+	@make -C minilibx_macos fclean
 	@rm -f $(PUSH_SWAP) $(CHECKER)
 
 re: fclean all
 	@make -C libft re
+	@make -C minilibx_macos re

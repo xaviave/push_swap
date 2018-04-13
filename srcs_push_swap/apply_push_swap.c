@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/03/20 17:58:36 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/03/27 16:44:24 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/12 11:41:03 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,7 @@ static int	*follow_the_bubble(int *tab, int size)
 		while (++j < size - i - 1)
 		{
 			if (tab[j] > tab[j + 1])
-			{		
+			{
 				s = tab[j];
 				tab[j] = tab[j + 1];
 				tab[j + 1] = s;
@@ -70,27 +70,41 @@ int			check_sort(t_nu **pile_a, t_nu **pile_b)
 	return (0);
 }
 
+int			get_elem_max(t_nu **pile)
+{
+	int		max;
+	t_nu	*tmp;
+
+	tmp = *pile;
+	max = tmp->number;
+	while (tmp)
+	{
+		if (tmp->number > max)
+			max = tmp->number;
+		tmp = tmp->next;
+	}
+	return (max);
+}
+
 void		apply_push_swap(t_nu *pile_a, t_nu *pile_b)
 {
 	int		size;
 	int		*tab;
-	t_nu	*tmp_a;
 
-	size = 0;
-	tmp_a = pile_a;
-	while (tmp_a)
-	{
-		size++;
-		tmp_a = tmp_a->next;
-	}
+	size = len_pile(&pile_a);
 	if (size == 1 || !size)
 		return ;
 	tab = shitty_bubblesort(pile_a, size);
-	ft_simplesort(&pile_a, &pile_b, size, tab);
-	//ft_mergesort(&pile_a, &pile_b, size);
-	//ft_quicksort(&pile_a, &pile_b, size);
 	if (!check_sort(&pile_a, &pile_b))
-		ft_printf("normally, it's sort!\n");
+	{
+		free_list(pile_a);
+		return ;
+	}
+	if (size < 6)
+		ft_simplesort(&pile_a, &pile_b, tab);
 	else
-		ft_printf("not sort!\n");
+		genius_insert(&pile_a, &pile_b);
+	free(tab);
+	free_list(pile_a);
+	free_list(pile_b);
 }

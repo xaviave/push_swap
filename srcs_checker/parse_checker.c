@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/03/14 11:47:54 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/03/27 16:02:58 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/12 11:51:32 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,7 +54,40 @@ static int	check_double(int *tab, int max)
 	return (1);
 }
 
-int			parse_checker(int ac, char **av, t_nu **pile_a)
+static int	next_parse_checker(int *tab, int j, t_nu **pile_a)
+{
+	if (!check_double(tab, j))
+		return (color("Error", 0));
+	if (!((*pile_a) = new_list(j, tab)))
+		return (color("Error", 0));
+	free(tab);
+	return (1);
+}
+
+static int	split_char(char *str, int **tab, int *j, t_nu **pile_a)
+{
+	int		i;
+	char	**tab_nu;
+
+	i = 0;
+	tab_nu = ft_strsplit(str, ' ');
+	while (tab_nu[i])
+		i++;
+	*j = i;
+	if (!(*tab = (int *)malloc(sizeof(int) * i)))
+		return (color("Error", 0));
+	i = 0;
+	while (tab_nu && tab_nu[i])
+	{
+		if (!check_arg(tab_nu[i]))
+			return (color("Error", 0));
+		(*tab)[i] = ft_atoi(tab_nu[i]);
+		i++;
+	}
+	return (next_parse_checker(*tab, *j, pile_a));
+}
+
+int			parse_checker(int ac, char **av, t_nu **pile_a, t_mem *graph)
 {
 	int		i;
 	int		j;
@@ -62,21 +95,29 @@ int			parse_checker(int ac, char **av, t_nu **pile_a)
 
 	i = 0;
 	j = 0;
+	tab = NULL;
 	if (!ac)
-		return (color("Usage", 2));
-	if (!(tab = (int *)malloc(sizeof(int) * ac)))
-		return (color("Error", 0));
-	while (++i <= ac)
+		return (color("Usage: ./checker [number]", 2));
+	if (ac > 1)
 	{
-		if (!check_arg(av[i]))
+		if (ac == 2 && !check_arg(av[1]))
+		{
+			if (check_graph(av[1], graph))
+				return (split_char(av[ac], &tab, &j, pile_a));
+		}
+		else if (ac > 2 && !check_arg(av[1]))
+			i = check_graph(av[1], graph);
+		if (!(tab = (int *)malloc(sizeof(int) * ac)))
 			return (color("Error", 0));
-		tab[j] = ft_atoi(av[i]);
-		j++;
+		while (++i <= ac)
+		{
+			if (!check_arg(av[i]))
+				return (color("Error", 0));
+			tab[j] = ft_atoi(av[i]);
+			j++;
+		}
 	}
-	if (!check_double(tab, j))
-		return (color("Error", 0));
-	if (!((*pile_a) = new_list(j, tab)))
-		return (color("Error", 0));
-	free(tab);
-	return (1);
+	else
+		return (split_char(av[ac], &tab, &j, pile_a));
+	return (next_parse_checker(tab, j, pile_a));
 }

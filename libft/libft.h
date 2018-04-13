@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/11/27 16:32:24 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/03/14 13:23:46 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/10 17:45:01 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,8 +24,8 @@
 # define BUFF_SIZE 32
 
 /*
- **	libft source
- */
+**	libft source
+*/
 
 typedef struct		s_list
 {
@@ -127,8 +127,8 @@ char				*ft_strjoinf1(char *s1, const char *s2);
 char				*ft_strjoinf2(const char *s1, char *s2);
 
 /*
- ** ft_printf source
- */
+** ft_printf source
+*/
 
 typedef struct		s_opt
 {
@@ -156,7 +156,7 @@ size_t				ft_hexap(char *format, va_list ap);
 size_t				ft_number(char *format, va_list ap);
 size_t				ft_octnumber(char *format, va_list ap);
 size_t				ft_unsnumber(char *format, va_list ap);
-size_t				ft_hexnumber(char *format, va_list ap);				
+size_t				ft_hexnumber(char *format, va_list ap);
 size_t				ft_char(char *format, va_list ap);
 size_t				ft_modulo(char *format, va_list ap);
 int					parseall(char *format, t_opt *option, int ok);
@@ -170,8 +170,8 @@ char				*hashtag(char **str, t_opt *option);
 void				plus(char **str, long nu);
 
 /*
- **	colors
- */
+**	colors
+*/
 
 # define GRN		"\e[32m"
 # define MAG		"\e[35m"

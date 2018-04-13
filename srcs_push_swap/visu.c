@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   quicksort.c                                      .::    .:/ .      .::   */
+/*   visu.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/03/22 11:17:23 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/03/27 14:19:44 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/04/11 19:02:53 by xamartin     #+#   ##    ##    #+#       */
+/*   Updated: 2018/04/12 11:40:28 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_quicksort(t_nu **pile_a, t_nu **pile_b, int size)
+void		visu(t_mem *graph, t_nu **pile_a, t_nu **pile_b, char *move)
 {
-	if (pile_a || pile_b || size)
+	if (graph || pile_a || pile_b || move)
+		return ;
+}
+
+void		init_visu(t_mem *graph, t_nu **pile_a)
+{
+	if (graph || pile_a)
 		return ;
 }

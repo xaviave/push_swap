@@ -6,14 +6,15 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/03/14 14:36:31 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/03/26 13:37:12 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/12 11:39:18 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static t_move	new_move(char *str, int (*f)(t_nu **pile_a, t_nu **pile_b, int aff))
+static t_move	new_move(char *str, int (*f)(t_nu **pile_a,
+			t_nu **pile_b, int aff, t_mem *graph))
 {
 	t_move		new;
 

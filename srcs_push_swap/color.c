@@ -6,14 +6,14 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/03/20 17:38:41 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/03/26 16:01:56 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/12 11:41:06 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	color(char *str, int color)
+int		color(char *str, int color)
 {
 	if (!color)
 		ft_putstr(RED);
@@ -26,4 +26,17 @@ int	color(char *str, int color)
 	ft_putendl(str);
 	ft_putstr(RESET);
 	return (0);
+}
+
+void	free_tab(char **tab_nu)
+{
+	int i;
+
+	i = 0;
+	while (tab_nu[i])
+	{
+		ft_strdel(&tab_nu[i]);
+		i++;
+	}
+	free(tab_nu);
 }

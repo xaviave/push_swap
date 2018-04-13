@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/03/20 17:48:35 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/03/20 17:48:37 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/12 11:41:29 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,4 +56,19 @@ void		free_list(t_nu *list)
 		tmp1 = tmp2;
 	}
 	list = NULL;
+}
+
+int			len_pile(t_nu **pile)
+{
+	int		size;
+	t_nu	*tmp;
+
+	size = 0;
+	tmp = *pile;
+	while (tmp)
+	{
+		size++;
+		tmp = tmp->next;
+	}
+	return (size);
 }

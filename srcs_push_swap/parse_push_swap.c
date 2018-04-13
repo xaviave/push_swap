@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/03/14 11:47:54 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/03/27 15:47:24 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/12 11:42:02 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,6 +54,47 @@ static int	check_double(int *tab, int max)
 	return (1);
 }
 
+static int	next_parse_push_swap(int *tab, int j, t_nu **pile_a)
+{
+	if (!check_double(tab, j))
+	{
+		free(tab);
+		return (color("Error", 0));
+	}
+	if (!((*pile_a) = new_list(j, tab)))
+		return (color("Error", 0));
+	free(tab);
+	return (1);
+}
+
+static int	split_char(char *str, int **tab, int *j, t_nu **pile_a)
+{
+	int		i;
+	char	**tab_nu;
+
+	i = 0;
+	tab_nu = ft_strsplit(str, ' ');
+	while (tab_nu[i])
+		i++;
+	*j = i;
+	if (!(*tab = (int *)malloc(sizeof(int) * i)))
+		return (color("Error", 0));
+	i = 0;
+	while (tab_nu[i])
+	{
+		if (!check_arg(tab_nu[i]))
+		{
+			free_tab(tab_nu);
+			return (color("Error", 0));
+		}
+		(*tab)[i] = ft_atoi(tab_nu[i]);
+		ft_strdel(&(tab_nu[i]));
+		i++;
+	}
+	free_tab(tab_nu);
+	return (next_parse_push_swap(*tab, *j, pile_a));
+}
+
 int			parse_push_swap(int ac, char **av, t_nu **pile_a)
 {
 	int		i;
@@ -62,21 +103,25 @@ int			parse_push_swap(int ac, char **av, t_nu **pile_a)
 
 	i = 0;
 	j = 0;
+	tab = NULL;
 	if (!ac)
 		return (color("Usage", 2));
-	if (!(tab = (int *)malloc(sizeof(int) * ac)))
-		return (color("Error", 0));
-	while (++i <= ac)
+	if (ac > 1)
 	{
-		if (!check_arg(av[i]))
+		if (!(tab = (int *)malloc(sizeof(int) * ac)))
 			return (color("Error", 0));
-		tab[j] = ft_atoi(av[i]);
-		j++;
+		while (++i <= ac)
+		{
+			if (!check_arg(av[i]))
+			{
+				free(tab);
+				return (color("Error", 0));
+			}
+			tab[j] = ft_atoi(av[i]);
+			j++;
+		}
 	}
-	if (!check_double(tab, j))
-		return (color("Error", 0));
-	if (!((*pile_a) = new_list(j, tab)))
-		return (color("Error", 0));
-	free(tab);
-	return (1);
+	else
+		return (split_char(av[ac], &tab, &j, pile_a));
+	return (next_parse_push_swap(tab, j, pile_a));
 }
