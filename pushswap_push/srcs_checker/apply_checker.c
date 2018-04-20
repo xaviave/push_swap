@@ -6,31 +6,27 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/03/14 11:31:59 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/16 13:11:50 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/19 17:43:06 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	check_move(char **move)
+static int	check_move(char *move)
 {
 	int		i;
 
 	i = 0;
-	while (move[i])
-	{
-		if (!ft_strcmp("sa", move[i]) || !ft_strcmp("sb", move[i])
-				|| !ft_strcmp("ss", move[i]) || !ft_strcmp("pa", move[i])
-				|| !ft_strcmp("pb", move[i]) || !ft_strcmp("ra", move[i])
-				|| !ft_strcmp("rb", move[i]) || !ft_strcmp("rr", move[i])
-				|| !ft_strcmp("rrb", move[i]) || !ft_strcmp("rra", move[i])
-				|| !ft_strcmp("rrr", move[i]))
-			i++;
-		else
-			return (0);
-	}
-	return (1);
+	if (!ft_strcmp("sa", move) || !ft_strcmp("sb", move)
+			|| !ft_strcmp("ss", move) || !ft_strcmp("pa", move)
+			|| !ft_strcmp("pb", move) || !ft_strcmp("ra", move)
+			|| !ft_strcmp("rb", move) || !ft_strcmp("rr", move)
+			|| !ft_strcmp("rrb", move) || !ft_strcmp("rra", move)
+			|| !ft_strcmp("rrr", move) || !ft_strcmp("", move))
+		return (0);
+	else
+		return (1);
 }
 
 static int	check_well(t_nu **pile_a, t_nu **pile_b)
@@ -63,7 +59,7 @@ static void	apply_move(char **move, t_nu *pile_a)
 	{
 		j = -1;
 		while (++j < 11)
- 		{
+		{
 			if (!ft_strcmp(move[i], move_struct[j].str))
 			{
 				move_struct[j].f(&pile_a, &pile_b, 0);
@@ -87,14 +83,19 @@ void		apply_checker(t_nu *pile_a)
 	while (ft_gnl(0, &line) > 0)
 	{
 		file = ft_strjoinf1(file, line);
+		if (check_move(line))
+		{
+			color("Error", 0);
+			free_list(pile_a);
+			ft_strdel(&file);
+			ft_strdel(&line);
+			return ;
+		}
 		file = ft_strjoinf1(file, "/");
 		ft_strdel(&line);
 	}
 	move = ft_strsplit(file, '/');
 	ft_strdel(&file);
-	if (check_move(move))
-		apply_move(move, pile_a);
-	else
-		color("Error", 0);
+	apply_move(move, pile_a);
 	free_tab(move);
 }

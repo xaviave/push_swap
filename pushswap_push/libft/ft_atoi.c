@@ -6,18 +6,18 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/11/27 16:30:27 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2017/11/27 16:30:46 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/19 17:57:16 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_atoi(const char *nptr)
+long		ft_atoi(const char *nptr)
 {
 	size_t	i;
 	char	n;
-	size_t	out;
+	long	out;
 
 	i = 0;
 	out = 0;

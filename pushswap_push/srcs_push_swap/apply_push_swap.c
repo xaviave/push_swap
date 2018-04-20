@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/03/20 17:58:36 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/16 17:25:34 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/19 18:20:58 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -93,14 +93,20 @@ void		apply_push_swap(t_nu *pile_a, t_nu *pile_b)
 
 	size = len_pile(&pile_a);
 	if (size == 1 || !size)
-		return ;
-	tab = shitty_bubblesort(pile_a, size);
-	if (!check_sort(&pile_a, &pile_b))
 	{
 		free_list(pile_a);
 		return ;
 	}
-	if (size < 6)
+	tab = shitty_bubblesort(pile_a, size);
+	if (!check_sort(&pile_a, &pile_b))
+	{
+		free(tab);
+		free_list(pile_a);
+		return ;
+	}
+	if (size < 4)
+		sort_a(&pile_a, &pile_b, tab);
+	else if (size < 6)
 		ft_simplesort(&pile_a, &pile_b, tab);
 	else
 		genius_insert(&pile_a, &pile_b);

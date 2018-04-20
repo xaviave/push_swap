@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/02/01 13:26:59 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/16 17:25:14 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/19 18:20:40 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,8 +37,8 @@ void				init_move(t_move **move);
 void				free_move(t_move **move);
 
 /*
- ** Possible moves
- */
+** Possible moves
+*/
 
 int					sa(t_nu **pile_a, t_nu **pile_b, int aff);
 int					sb(t_nu **pile_a, t_nu **pile_b, int aff);
@@ -53,15 +53,15 @@ int					rrb(t_nu **pile_a, t_nu **pile_b, int aff);
 int					rrr(t_nu **pile_a, t_nu **pile_b, int aff);
 
 /*
- ** Checker files
- */
+** Checker files
+*/
 
 int					parse_checker(int ac, char **av, t_nu **pile_a);
 void				apply_checker(t_nu *pile_a);
 
 /*
- ** Push swap files
- */
+** Push swap files
+*/
 
 int					len_pile(t_nu **pile);
 int					get_elem_max(t_nu **pile);
@@ -70,6 +70,7 @@ int					how_many(t_nu **a, t_nu **b, int pos_in_a, int pos_in_b);
 int					do_insert(t_nu **a, t_nu **b, int pos_in_a, int pos_in_b);
 void				genius_insert(t_nu **a, t_nu **b);
 void				apply_push_swap(t_nu *pile_a, t_nu *pile_b);
+void				sort_a(t_nu **pile_a, t_nu **pile_b, int *tab);
 void				ft_simplesort(t_nu **pile_a, t_nu **pile_b, int *tab);
 
 #endif

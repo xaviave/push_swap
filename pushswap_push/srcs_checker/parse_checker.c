@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/03/14 11:47:54 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/16 13:11:57 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/19 18:37:24 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,6 +27,8 @@ static int	check_arg(char *str)
 		i++;
 	}
 	if (i == 0 && (str[i] == '-' || str[i] == '+'))
+		return (0);
+	if (ft_atoi(str) >= 2147483647 || ft_atoi(str) <= -2147483648)
 		return (0);
 	return (1);
 }
@@ -80,10 +82,16 @@ static int	split_char(char *str, int **tab, int *j, t_nu **pile_a)
 	while (tab_nu[i])
 	{
 		if (!check_arg(tab_nu[i]))
+		{
+			free(*tab);
+			free_tab(tab_nu);
+			free_list(*pile_a);
 			return (color("Error", 0));
+		}
 		(*tab)[i] = ft_atoi(tab_nu[i]);
 		i++;
 	}
+	free_tab(tab_nu);
 	return (next_parse_checker(*tab, *j, pile_a));
 }
 
@@ -97,20 +105,21 @@ int			parse_checker(int ac, char **av, t_nu **pile_a)
 	j = 0;
 	tab = NULL;
 	if (!ac)
-		return (color("Usage: ./checker [number]", 2));
-	if (ac > 1)
-	{
-		if (!(tab = (int *)malloc(sizeof(int) * ac)))
-			return (color("Error", 0));
-		while (++i <= ac)
-		{
-			if (!check_arg(av[i]))
-				return (color("Error", 0));
-			tab[j] = ft_atoi(av[i]);
-			j++;
-		}
-	}
-	else
+		return (0);
+	if (ac == 1)
 		return (split_char(av[ac], &tab, &j, pile_a));
+	if (!(tab = (int *)malloc(sizeof(int) * ac)))
+		return (color("Error", 0));
+	while (++i <= ac)
+	{
+		if (!check_arg(av[i]))
+		{
+			free(tab);
+			free_list(*pile_a);
+			return (color("Error", 0));
+		}
+		tab[j] = ft_atoi(av[i]);
+		j++;
+	}
 	return (next_parse_checker(tab, j, pile_a));
 }

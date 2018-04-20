@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/03/26 13:17:15 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/16 17:25:32 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/19 18:18:20 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,7 +51,7 @@ static void	do_move(int move, t_nu **pile_a, t_nu **pile_b)
 	}
 }
 
-static void	sort_a(t_nu **pile_a, t_nu **pile_b, int *tab)
+void		sort_a(t_nu **pile_a, t_nu **pile_b, int *tab)
 {
 	int		j;
 	int		size;
@@ -59,7 +59,7 @@ static void	sort_a(t_nu **pile_a, t_nu **pile_b, int *tab)
 
 	size = size_calc(pile_a, 0, &j);
 	while (size >= 0)
-	{	
+	{
 		j = 0;
 		tmp = *pile_a;
 		while (tmp)
